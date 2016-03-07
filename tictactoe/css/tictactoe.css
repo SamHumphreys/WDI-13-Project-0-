@@ -1,0 +1,69 @@
+body {
+  background-color: black;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+}
+
+.board {
+  position: relative;
+  background-color: gainsboro;
+  height: 75vh;
+  width: 75vh;
+  margin: 0 auto;
+}
+
+.square {
+  position: absolute;
+  background-color: papayawhip;
+  width: 30%;
+  height: 30%;
+}
+
+#s00 {
+  top: 0;
+  left: 0;
+}
+
+#s01 {
+  top: 0;
+  left: 35%;
+}
+
+#s02 {
+  top: 0;
+  right: 0;
+}
+
+#s10 {
+  top: 35%;
+  left: 0;
+}
+
+#s11 {
+  top: 35%;
+  left: 35%;
+}
+
+#s12 {
+  top: 35%;
+  right: 0;
+}
+
+#s20 {
+  bottom: 0;
+  left: 0;
+}
+
+#s21 {
+  bottom: 0;
+  left: 35%;
+}
+
+#s22 {
+  bottom: 0;
+  right: 0;
+}
