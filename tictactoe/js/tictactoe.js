@@ -92,7 +92,6 @@ var doStuff = {
     if (data.winner === 'Player 1') {
       var winText = 'DOGS WIN!!!';
       var bckGnd = 'url(images/dogcatch.gif)';
-      var body = 'url(images/dogbath.gif)';
       var posn = '-50px 0';
       var size = '160%';
       var textSpot = 'bottom';
@@ -100,7 +99,6 @@ var doStuff = {
     if (data.winner === 'Player 2') {
       var winText = 'CATS WIN!!!';
       var bckGnd = 'url(images/catpewpew.gif)';
-      var body = 'url(images/catamazed.gif)';
       var posn = '-98px 0';
       var size = '134%';
       var textSpot = 'top';
@@ -109,7 +107,6 @@ var doStuff = {
     if (data.winner === 'tie') {
       var winText = 'It\'s a tie :-/';
       var bckGnd = 'url(images/dogcatlick.gif)';
-      var body = 'url(images/dogcattie.gif)';
       var posn = '-98px 0';
       var size = '136%';
       var textSpot = 'bottom';
@@ -120,8 +117,6 @@ var doStuff = {
                         'background-position': posn,
                         'position': 'relative',
                         'text-align': 'center'});
-    $('body').css({'background': body});
-        //            'width': '33%'
     var h2 = $('<h2>').attr('class', 'winnertext').text(winText);
     h2.css({'position': 'absolute',
               'width': '100%',
