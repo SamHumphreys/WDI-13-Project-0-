@@ -23,11 +23,15 @@ var doStuff = {
     var id = '';
     data.movesCount ++;
     if (data.playerTurn === 1) {
-      color = 'red';
+      var backgroundimage = 'url(images/dogtongue.gif)';
+      var shift = '0 0';
     } else {
-      color = 'blue';
+      var backgroundimage = 'url(images/catwiggle.gif)';
+      var shift = '-50px 0';
     }
-  $(data.self).css({'background-color': color});
+  $(data.self).css({'background': backgroundimage,
+                    'background-size': 'cover',
+                    'background-position': shift});
   data.usedSquares.push($(data.self).attr('id'));
   this.updateBoard();
   data.playerTurn = -data.playerTurn;
@@ -85,9 +89,46 @@ var doStuff = {
   },
 
   endgame: function () {
-    console.log('winner is ' + data.winner);
-    console.log('the game is over, man');
-    $('div').toggle();
+    if (data.winner === 'Player 1') {
+      var winText = 'DOGS WIN!!!';
+      var bckGnd = 'url(images/dogcatch.gif)';
+      var body = 'url(images/dogbath.gif)';
+      var posn = '-50px 0';
+      var size = '160%';
+      var textSpot = 'bottom';
+    }
+    if (data.winner === 'Player 2') {
+      var winText = 'CATS WIN!!!';
+      var bckGnd = 'url(images/catpewpew.gif)';
+      var body = 'url(images/catamazed.gif)';
+      var posn = '-98px 0';
+      var size = '134%';
+      var textSpot = 'top';
+
+    }
+    if (data.winner === 'tie') {
+      var winText = 'It\'s a tie :-/';
+      var bckGnd = 'url(images/dogcatlick.gif)';
+      var body = 'url(images/dogcattie.gif)';
+      var posn = '-98px 0';
+      var size = '136%';
+      var textSpot = 'bottom';
+    }
+
+    $('.endgame').css({'background': bckGnd,
+                        'background-size': size,
+                        'background-position': posn,
+                        'position': 'relative',
+                        'text-align': 'center'});
+    $('body').css({'background': body});
+        //            'width': '33%'
+    var h2 = $('<h2>').attr('class', 'winnertext').text(winText);
+    h2.css({'position': 'absolute',
+              'width': '100%',
+              'margin': 'auto',
+              'font-size':'300%'}).css(textSpot, '0');
+    $('.endgame').append(h2);
+  $('div').toggle();
   },
 
   resetBoard: function () {
@@ -100,7 +141,11 @@ var doStuff = {
       winner: '',
       movesCount: 0
     }
-    $('.square').css({'background-color': 'papayawhip'});
+    $('.square').css({'background-color': 'papayawhip',
+                      'background': ''});
+    $('.winnertext').remove();
+    $('.endgame').css({'background': ''});
+    $('body').css({'background': ''});
     $('div').toggle();
   }
 };
