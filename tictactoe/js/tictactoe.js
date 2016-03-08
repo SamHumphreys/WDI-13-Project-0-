@@ -3,7 +3,9 @@ var data = {
   self: '',
   usedSquares: [],
   board: [['','',''],['','',''],['','','']],
-  checkWinner: 0
+  checkWinner: 0,
+  winner: '',
+  movesCount: 0
 };
 
 
@@ -20,6 +22,7 @@ var doStuff = {
   haveTurn: function () {
     var color = '';
     var id = '';
+    data.movesCount ++;
     if (data.playerTurn === 1) {
       color = 'red';
     } else {
@@ -29,7 +32,7 @@ var doStuff = {
   data.usedSquares.push($(data.self).attr('id'));
   this.updateBoard();
   data.playerTurn = -data.playerTurn;
-  doStuff.checkWinner();
+  doStuff.checkBoard();
   },
 
   updateBoard: function () {
@@ -38,21 +41,28 @@ var doStuff = {
     ySpot = square[2];
     data.board[xSpot][ySpot] = data.playerTurn;
   },
-  checkWinner: function () {
+
+  checkForWinner: function() {
+     if (data.checkWinner === 3) {
+      data.winner = 'Player1';
+      doStuff.endgame();
+    } else if (data.checkWinner === -3) {
+      data.winner = 'Player2';
+      doStuff.endgame();
+    } else if (data.movesCount === 9  && data.winner === '') {
+      data.winner = 'tie';
+      doStuff.endgame();
+    }
+  },
+
+  checkBoard: function () {
     //checkX
     for (var i = 0; i < data.board.length; i ++) {
       data.checkWinner = 0;
       for (var j = 0; j < data.board[i].length; j ++) {
         data.checkWinner += data.board[i][j];
       }
-      if (data.checkWinner === 3) {
-        console.log('positive wins');
-        return;
-      }
-      if (data.checkWinner === -3) {
-        console.log('negative wins');
-        return;
-      }
+      doStuff.checkForWinner();
     }
     //checkY
     for (var i = 0; i < data.board.length; i ++) {
@@ -60,44 +70,26 @@ var doStuff = {
       for (var j = 0; j < data.board[i].length; j ++) {
         data.checkWinner += data.board[j][i];
       }
-      if (data.checkWinner === 3) {
-        console.log('positive wins');
-        return;
-      }
-      if (data.checkWinner === -3) {
-        console.log('negative wins');
-        return;
-      }
+      doStuff.checkForWinner();
     }
-    //checkDiagonal
+    //checkDiagonals
     data.checkWinner = 0;
     for (var i = 0; i < data.board.length; i ++) {
       data.checkWinner += data.board[i][i];
     }
-    if (data.checkWinner === 3) {
-      console.log('positive wins');
-      return;
-    }
-    if (data.checkWinner === -3) {
-      console.log('negative wins');
-      return;
-    }
+    doStuff.checkForWinner();
     data.checkWinner = 0;
     for (var i = 0; i < data.board.length; i ++) {
       data.checkWinner += data.board[2-i][i];
     }
-    if (data.checkWinner === 3) {
-      console.log('positive wins');
-      return;
-    }
-    if (data.checkWinner === -3) {
-      console.log('negative wins');
-      return;
-    }
+    doStuff.checkForWinner();
+  },
+
+  endgame: function () {
+    console.log('winner is ' + data.winner);
+    console.log('the game is over, man');
   }
-
 };
-
 
 
 $('.board').on('click', '.square', function () {
