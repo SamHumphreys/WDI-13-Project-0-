@@ -8,7 +8,6 @@ var data = {
   movesCount: 0
 };
 
-
 var doStuff = {
   checkMove: function () {
     for (var i = 0; i < data.usedSquares.length; i ++) {
@@ -44,10 +43,10 @@ var doStuff = {
 
   checkForWinner: function() {
      if (data.checkWinner === 3) {
-      data.winner = 'Player1';
+      data.winner = 'Player 1';
       doStuff.endgame();
     } else if (data.checkWinner === -3) {
-      data.winner = 'Player2';
+      data.winner = 'Player 2';
       doStuff.endgame();
     } else if (data.movesCount === 9  && data.winner === '') {
       data.winner = 'tie';
@@ -88,6 +87,21 @@ var doStuff = {
   endgame: function () {
     console.log('winner is ' + data.winner);
     console.log('the game is over, man');
+    $('div').toggle();
+  },
+
+  resetBoard: function () {
+    data = {
+      playerTurn: 1,
+      self: '',
+      usedSquares: [],
+      board: [['','',''],['','',''],['','','']],
+      checkWinner: 0,
+      winner: '',
+      movesCount: 0
+    }
+    $('.square').css({'background-color': 'papayawhip'});
+    $('div').toggle();
   }
 };
 
@@ -96,3 +110,7 @@ $('.board').on('click', '.square', function () {
   data.self = this;
   doStuff.checkMove();
 });
+
+$('.rsetbttn').on('click', function () {
+  doStuff.resetBoard();
+})

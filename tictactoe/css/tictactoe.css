@@ -8,13 +8,31 @@ h1 {
   margin: 0 auto;
 }
 
+div {
+  width: 75vh;
+}
+
 .board {
   position: relative;
   background-color: gainsboro;
   height: 75vh;
-  width: 75vh;
   margin: 0 auto;
 }
+
+.endgame {
+  margin: 0 auto;
+  background-color: white;
+  height: 75vh;
+  display: none;
+}
+
+.reset {
+  margin: 15px auto;
+  display: none;
+  text-align: center;
+}
+
+
 
 .square {
   position: absolute;
