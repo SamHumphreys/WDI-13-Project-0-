@@ -55,6 +55,10 @@ p {
   height: 30%;
 }
 
+.square:hover {
+  background-color: hotpink;
+}
+
 #s00 {
   top: 0;
   left: 0;
