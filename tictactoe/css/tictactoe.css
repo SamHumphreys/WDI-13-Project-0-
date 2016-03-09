@@ -36,6 +36,18 @@ div {
   text-align: center;
 }
 
+.score {
+  font-size: 8vh;
+  height: 15vh;
+  text-align: center;
+  margin: 0 auto;
+  color: white;
+}
+
+p {
+  margin: .3em;
+}
+
 .square {
   position: absolute;
   background-color: papayawhip;

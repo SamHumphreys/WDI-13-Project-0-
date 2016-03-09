@@ -5,8 +5,12 @@ var data = {
   board: [['','',''],['','',''],['','','']],
   checkWinner: 0,
   winner: '',
-  movesCount: 0
+  movesCount: 0,
 };
+
+var persistent = {
+  scoreBoard: [0,0]
+}
 
 var doStuff = {
   checkMove: function () {
@@ -90,6 +94,7 @@ var doStuff = {
 
   endgame: function () {
     if (data.winner === 'Player 1') {
+      persistent.scoreBoard[0] ++;
       var winText = 'DOGS WIN!!!';
       var bckGnd = 'url(images/dogcatch.gif)';
       var posn = '-50px 0';
@@ -97,6 +102,7 @@ var doStuff = {
       var textSpot = 'bottom';
     }
     if (data.winner === 'Player 2') {
+      persistent.scoreBoard[1] ++;
       var winText = 'CATS WIN!!!';
       var bckGnd = 'url(images/catpewpew.gif)';
       var posn = '-98px 0';
@@ -123,7 +129,8 @@ var doStuff = {
               'margin': 'auto',
               'font-size':'300%'}).css(textSpot, '0');
     $('.endgame').append(h2);
-  $('div').toggle();
+    $('.scoreBoard').html('Dogs - ' + persistent.scoreBoard[0] + ' : ' + persistent.scoreBoard[1] + ' - Cats');
+  $('.flip').toggle();
   },
 
   resetBoard: function () {
@@ -134,14 +141,14 @@ var doStuff = {
       board: [['','',''],['','',''],['','','']],
       checkWinner: 0,
       winner: '',
-      movesCount: 0
+      movesCount: 0,
     }
     $('.square').css({'background-color': 'papayawhip',
                       'background': ''});
     $('.winnertext').remove();
     $('.endgame').css({'background': ''});
     $('body').css({'background': ''});
-    $('div').toggle();
+    $('.flip').toggle();
   }
 };
 
