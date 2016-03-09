@@ -68,6 +68,13 @@ div {
   text-align: center;
 }
 
+.whoseGo {
+  margin: 15px auto;
+  text-align: center;
+  color: white;
+  font-size: 2em;
+}
+
 p {
   margin: .3em;
 }

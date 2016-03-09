@@ -10,7 +10,8 @@ var data = {
 
 var persistent = {
   scoreBoard: [0,0],
-  whoGoesFirst: 1
+  whoGoesFirst: 1,
+  message: "It's the dog's turn"
 }
 
 var doStuff = {
@@ -30,9 +31,11 @@ var doStuff = {
     if (data.playerTurn === 1) {
       var backgroundimage = 'url(images/dogtongue.gif)';
       var shift = '0 0';
+      persistent.message = "It's the cat's turn";
     } else {
       var backgroundimage = 'url(images/catwiggle.gif)';
       var shift = '-50px 0';
+      persistent.message = "It's the dog's turn";
     }
   $(data.self).css({'background': backgroundimage,
                     'background-size': 'cover',
@@ -61,6 +64,7 @@ var doStuff = {
       data.winner = 'tie';
       doStuff.endgame();
     }
+    $('.whoseGo').find('p').text(persistent.message);
   },
 
   checkBoard: function () {
@@ -146,6 +150,11 @@ var doStuff = {
       winner: '',
       movesCount: 0,
     };
+    if (persistent.whoGoesFirst === 1) {
+      $('.whoseGo').find('p').text("It's the dog's turn");
+    } else {
+      $('.whoseGo').find('p').text("It's the cat's turn");
+    };
     $('.square').css({'background-color': 'papayawhip',
                       'background': ''});
     $('.winnertext').remove();
@@ -155,11 +164,13 @@ var doStuff = {
   }
 };
 
-$('.board').on('click', '.square', function () {
-  data.self = this;
-  doStuff.checkMove();
-});
 
-$('.rsetbttn').on('click', function () {
-  doStuff.resetBoard();
-})
+
+$(document).ready(function(){
+  $('.rsetbttn').on('click', doStuff.resetBoard);
+  $('.endgame').on('click', doStuff.resetBoard);
+  $('.board').on('click', '.square', function () {
+    data.self = this;
+    doStuff.checkMove();
+  });
+});
