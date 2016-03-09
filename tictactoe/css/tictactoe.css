@@ -77,12 +77,12 @@ p {
   background-color: papayawhip;
   width: 30%;
   height: 30%;
-  transition: all 1s;
+  transition: background-color 1s;
 }
 
 .square:hover {
   background-color: hotpink;
-  transition: all 1s;
+  transition: background-color 1s;
 }
 
 #s00 {

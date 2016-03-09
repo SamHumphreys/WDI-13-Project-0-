@@ -9,7 +9,8 @@ var data = {
 };
 
 var persistent = {
-  scoreBoard: [0,0]
+  scoreBoard: [0,0],
+  whoGoesFirst: 1
 }
 
 var doStuff = {
@@ -131,20 +132,20 @@ var doStuff = {
     $('.endgame').append(h2);
     $('.dogText').html(persistent.scoreBoard[0]);
     $('.catText').html(persistent.scoreBoard[1]);
-    // $('.scoreBoard').html('Dogs - ' + persistent.scoreBoard[0] + ' : ' + persistent.scoreBoard[1] + ' - Cats');
   $('.flip').toggle();
   },
 
   resetBoard: function () {
+    persistent.whoGoesFirst *= -1;
     data = {
-      playerTurn: 1,
+      playerTurn: persistent.whoGoesFirst,
       self: '',
       usedSquares: [],
       board: [['','',''],['','',''],['','','']],
       checkWinner: 0,
       winner: '',
       movesCount: 0,
-    }
+    };
     $('.square').css({'background-color': 'papayawhip',
                       'background': ''});
     $('.winnertext').remove();
@@ -153,7 +154,6 @@ var doStuff = {
     $('.flip').toggle();
   }
 };
-
 
 $('.board').on('click', '.square', function () {
   data.self = this;
