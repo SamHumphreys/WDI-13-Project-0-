@@ -129,7 +129,9 @@ var doStuff = {
               'margin': 'auto',
               'font-size':'300%'}).css(textSpot, '0');
     $('.endgame').append(h2);
-    $('.scoreBoard').html('Dogs - ' + persistent.scoreBoard[0] + ' : ' + persistent.scoreBoard[1] + ' - Cats');
+    $('.dogText').html(persistent.scoreBoard[0]);
+    $('.catText').html(persistent.scoreBoard[1]);
+    // $('.scoreBoard').html('Dogs - ' + persistent.scoreBoard[0] + ' : ' + persistent.scoreBoard[1] + ' - Cats');
   $('.flip').toggle();
   },
 
