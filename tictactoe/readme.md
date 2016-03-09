@@ -1,1 +1,2 @@
-This is a readme file :/
+#Project 0 - Tic Tac Toe
+##By Sam Humphreys

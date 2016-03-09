@@ -53,10 +53,12 @@ p {
   background-color: papayawhip;
   width: 30%;
   height: 30%;
+  transition: all 1s;
 }
 
 .square:hover {
   background-color: hotpink;
+  transition: all 1s;
 }
 
 #s00 {
