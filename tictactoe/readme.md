@@ -4,7 +4,7 @@ By Sam Humphreys
 ----------------
 
 ### Technology used:
-HTML, JavaScript (including jquery) and CSS (including normalize.css) were used to create this substandard game.
+HTML, JavaScript (including [jQuery](http://jquery.com)) and CSS (including [normalize.css](https://necolas.github.io/normalize.css/)) were used to create this substandard game.
 
 ### CSS and HTML:
 
@@ -33,3 +33,8 @@ The flow of the game is:
   It will also update the scoreboard.
   Once the endgame div is prepared it will toggle all of the divs with the "flip" class. This will hide the board and show the endgame div and reset button. If you click the endgame picture or the button it will run doStuff.resetBoard
   6. doStuff.resetBoard --> This function resets the board, updates the text for whose go it is, and then toggles the "flip" class divs again to show the board and hide the endgame.
+
+### Features to add:
+- add sound to the endgame div, only when it shows
+- add a startscreen which asks how many rounds to play, and an endscreen with a victory lap for the winner
+- be able to alter the board size (This would require the board to be redone as it is hard coded in the HTML)
