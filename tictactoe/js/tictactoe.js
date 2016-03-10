@@ -73,33 +73,43 @@ var doStuff = {
 
   checkBoard: function () {
     //checkX
-    for (var i = 0; i < data.board.length; i ++) {
-      data.checkWinner = 0;
-      for (var j = 0; j < data.board[i].length; j ++) {
-        data.checkWinner += data.board[i][j];
+    if (data.winner === '') {
+      for (var i = 0; i < data.board.length; i ++) {
+        data.checkWinner = 0;
+        for (var j = 0; j < data.board[i].length; j ++) {
+          data.checkWinner += data.board[i][j];
+        }
+        doStuff.checkForWinner();
       }
-      doStuff.checkForWinner();
     }
     //checkY
-    for (var i = 0; i < data.board.length; i ++) {
+    if (data.winner === '') {
+      for (var i = 0; i < data.board.length; i ++) {
+        data.checkWinner = 0;
+        for (var j = 0; j < data.board[i].length; j ++) {
+          data.checkWinner += data.board[j][i];
+        }
+        doStuff.checkForWinner();
+      }
+    }
+    //checkDiagonals
+    if (data.winner === '') {
       data.checkWinner = 0;
-      for (var j = 0; j < data.board[i].length; j ++) {
-        data.checkWinner += data.board[j][i];
+      for (var i = 0; i < data.board.length; i ++) {
+        data.checkWinner += data.board[i][i];
       }
       doStuff.checkForWinner();
     }
-    //checkDiagonals
-    data.checkWinner = 0;
-    for (var i = 0; i < data.board.length; i ++) {
-      data.checkWinner += data.board[i][i];
+    if (data.winner === '') {
+      data.checkWinner = 0;
+      for (var i = 0; i < data.board.length; i ++) {
+        data.checkWinner += data.board[2-i][i];
+      }
+      doStuff.checkForWinner();
     }
-    doStuff.checkForWinner();
-    data.checkWinner = 0;
-    for (var i = 0; i < data.board.length; i ++) {
-      data.checkWinner += data.board[2-i][i];
+    if (data.winner === '') {
+      doStuff.checkForTie();
     }
-    doStuff.checkForWinner();
-    doStuff.checkForTie();
   },
 
   endgame: function () {
