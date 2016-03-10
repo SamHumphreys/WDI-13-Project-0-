@@ -60,11 +60,15 @@ var doStuff = {
     } else if (data.checkWinner === -3) {
       data.winner = 'Player 2';
       doStuff.endgame();
-    } else if (data.movesCount === 9  && data.winner === '') {
+    }
+    $('.whoseGo').find('p').text(persistent.message);
+  },
+
+  checkForTie: function () {
+    if (data.movesCount === 9 && data.winner === '') {
       data.winner = 'tie';
       doStuff.endgame();
     }
-    $('.whoseGo').find('p').text(persistent.message);
   },
 
   checkBoard: function () {
@@ -95,6 +99,7 @@ var doStuff = {
       data.checkWinner += data.board[2-i][i];
     }
     doStuff.checkForWinner();
+    doStuff.checkForTie();
   },
 
   endgame: function () {
@@ -102,6 +107,7 @@ var doStuff = {
       persistent.scoreBoard[0] ++;
       var winText = 'DOGS WIN!!!';
       var bckGnd = 'url(images/dogcatch.gif)';
+      var victorySong = ('sounds/barkingbells.mp3');
       var posn = '-50px 0';
       var size = '160%';
       var textSpot = 'bottom';
@@ -110,14 +116,15 @@ var doStuff = {
       persistent.scoreBoard[1] ++;
       var winText = 'CATS WIN!!!';
       var bckGnd = 'url(images/catpewpew.gif)';
+      var victorySong = ('sounds/EOTT.ogg');
       var posn = '-98px 0';
       var size = '134%';
       var textSpot = 'top';
-
     }
     if (data.winner === 'tie') {
       var winText = 'It\'s a tie :-/';
       var bckGnd = 'url(images/dogcatlick.gif)';
+      var victorySong = ('sounds/itsadraw.mp3');
       var posn = '-98px 0';
       var size = '136%';
       var textSpot = 'bottom';
@@ -137,9 +144,12 @@ var doStuff = {
     $('.dogText').html(persistent.scoreBoard[0]);
     $('.catText').html(persistent.scoreBoard[1]);
   $('.flip').toggle();
+  var winnerSound = $('<audio>').attr({'src': victorySong, 'autoplay': true}).addClass('winnerSound');
+  $('.reset').append(winnerSound);
   },
 
   resetBoard: function () {
+    $('.winnerSound').remove();
     persistent.whoGoesFirst *= -1;
     data = {
       playerTurn: persistent.whoGoesFirst,
