@@ -26,15 +26,13 @@ The flow of the game is:
   2. doStuff.haveTurn --> Increase the data.movesCount by 1. Check to see whose turn it is, and update the clicked box image and pending move advice as appropriate. It will updated the data.usedSquares array for the next turn's checkMove function. It will run doStuff.updateBoard, and then doStuff.checkBoard.
   3. doStuff.updateBoard --> updates the data.board with the player's move (1 for Player 1, -1 for Player 2).
   4. doStuff.checkBoard --> Iterates through data.board to see if there is a winner with the  doStuff.checkForWinner function.
-  5. doStuff.checkForWinner --> If a row, column or diagonal adds up to 3 (ie, player 1 has all the spots on that row) it will update data.winner to be Player 1. If a row, column or diagaon adds up to -3 then data.winner is Player 2. If there have been 9 moves with no winner (ie, a tie) then the winner is "tie".
-   If there is no winner it will update the message about whose go it is next and wait for another click on the board.
-   If there is a winner or the game is a tie then it will run doStuff.endgame
-  5. dostuff.endgame --> If the game has a winner or is a tie then this function will check to see who won, update the endgame div background picture with either the dog, cat or tie winner picture.
+  5. doStuff.checkForWinner --> If a row, column or diagonal adds up to 3 (ie, player 1 has all the spots on that row) it will update data.winner to be Player 1. If a row, column or diagonal adds up to -3 then data.winner is Player 2. If there is no winner it checks if it is a tie in doStuff.checkForTie.
+  If there is no winner it will update the message about whose go it is next and wait for another click on the board.
+  6. If there have been 9 moves with no winner (ie, a tie) then the winner is "tie" and doStuff.endgame will run.
+  7. dostuff.endgame --> If the game has a winner or is a tie then this function will check to see who won, update the endgame div background picture with either the dog, cat or tie winner picture and the appropriate sound file.
   It will also update the scoreboard.
   Once the endgame div is prepared it will toggle all of the divs with the "flip" class. This will hide the board and show the endgame div and reset button. If you click the endgame picture or the button it will run doStuff.resetBoard
-  6. doStuff.resetBoard --> This function resets the board, updates the text for whose go it is, and then toggles the "flip" class divs again to show the board and hide the endgame.
+  8. doStuff.resetBoard --> This function resets the board, updates the text for whose go it is, deletes the sound event, and then toggles the "flip" class divs again to show the board and hide the endgame.
 
 ### Features to add:
-- add sound to the endgame div, only when it shows
-- add a startscreen which asks how many rounds to play, and an endscreen with a victory lap for the winner
 - be able to alter the board size (This would require the board to be redone as it is hard coded in the HTML)
